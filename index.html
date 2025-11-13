@@ -1,0 +1,1361 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Магарам | Премиум гид по Дагестану</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #1a472a;
+            --secondary: #d4af37;
+            --accent: #8b4513;
+            --dark: #0f1a15;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            --radius: 16px;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background-color: var(--light);
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.2;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        section {
+            padding: 120px 0;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 16px 36px;
+            background: var(--primary);
+            color: white;
+            border: none;
+            border-radius: 50px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: var(--transition);
+        }
+
+        .btn:hover::before {
+            left: 100%;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(139, 69, 19, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            border: 2px solid var(--secondary);
+            color: var(--dark);
+        }
+
+        .btn-secondary:hover {
+            background: var(--secondary);
+            color: white;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-header h2 {
+            font-size: 52px;
+            margin-bottom: 20px;
+            color: var(--primary);
+            position: relative;
+            display: inline-block;
+        }
+
+        .section-header h2::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: var(--secondary);
+            border-radius: 2px;
+        }
+
+        .section-header p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+            color: var(--gray);
+            line-height: 1.6;
+        }
+
+        /* Навигация */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 25px 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(15px);
+            z-index: 1000;
+            transition: var(--transition);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navbar-brand {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .navbar-brand span {
+            color: var(--secondary);
+        }
+
+        .navbar-brand::before {
+            content: '✦';
+            font-size: 24px;
+            color: var(--secondary);
+        }
+
+        .navbar-menu {
+            display: flex;
+            list-style: none;
+            gap: 40px;
+        }
+
+        .navbar-menu a {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            position: relative;
+            padding: 8px 0;
+        }
+
+        .navbar-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary);
+            transition: var(--transition);
+        }
+
+        .navbar-menu a:hover {
+            color: var(--primary);
+        }
+
+        .navbar-menu a:hover::after {
+            width: 100%;
+        }
+
+        .navbar-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            color: var(--primary);
+        }
+
+        /* Герой секция */
+        .hero-section {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(135deg, rgba(26, 71, 42, 0.85) 0%, rgba(139, 69, 19, 0.75) 100%), 
+                        url('https://images.unsplash.com/photo-1597134356835-61e8c5c13e7c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D') no-repeat center center/cover;
+            display: flex;
+            align-items: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        .hero-bg-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .hero-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+        }
+
+        .hero-content h1 {
+            font-size: 76px;
+            margin-bottom: 25px;
+            line-height: 1.1;
+            text-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 22px;
+            margin-bottom: 50px;
+            opacity: 0.9;
+            animation: fadeInUp 1s ease-out 0.3s both;
+        }
+
+        .hero-btns {
+            display: flex;
+            gap: 25px;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+        }
+
+        .scroll-indicator i {
+            font-size: 24px;
+            color: white;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0) translateX(-50%);
+            }
+            40% {
+                transform: translateY(-10px) translateX(-50%);
+            }
+            60% {
+                transform: translateY(-5px) translateX(-50%);
+            }
+        }
+
+        /* Секция о гиде */
+        .about-section {
+            background: white;
+            position: relative;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 80px;
+        }
+
+        .about-image {
+            flex: 1;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            position: relative;
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            z-index: -1;
+            border-radius: calc(var(--radius) + 10px);
+            opacity: 0.7;
+            filter: blur(15px);
+        }
+
+        .about-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+            transition: var(--transition);
+        }
+
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 42px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+            color: var(--gray);
+            line-height: 1.7;
+            font-size: 18px;
+        }
+
+        .about-features {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 40px;
+        }
+
+        .feature {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: var(--light);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .feature:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow);
+        }
+
+        .feature i {
+            color: var(--secondary);
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(212, 175, 55, 0.1);
+            border-radius: 50%;
+        }
+
+        /* Секция туров */
+        .tours-section {
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            position: relative;
+        }
+
+        .tours-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+            gap: 40px;
+        }
+
+        .tour-card {
+            background: white;
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .tour-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .tour-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .tour-image {
+            height: 280px;
+            width: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .tour-card:hover .tour-image {
+            transform: scale(1.05);
+        }
+
+        .tour-content {
+            padding: 30px;
+        }
+
+        .tour-content h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: var(--primary);
+        }
+
+        .tour-content p {
+            color: var(--gray);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .tour-features {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+            font-size: 14px;
+        }
+
+        .tour-feature {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--gray);
+        }
+
+        .tour-feature i {
+            color: var(--secondary);
+        }
+
+        .tour-price {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .price {
+            font-size: 28px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Секция галереи */
+        .gallery-section {
+            background: white;
+            position: relative;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: var(--radius);
+            overflow: hidden;
+            height: 350px;
+            box-shadow: var(--shadow);
+            cursor: pointer;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .gallery-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+            color: white;
+            transform: translateY(100%);
+            transition: var(--transition);
+        }
+
+        .gallery-item:hover .gallery-overlay {
+            transform: translateY(0);
+        }
+
+        /* Секция отзывов */
+        .testimonials-section {
+            background: linear-gradient(135deg, var(--primary) 0%, #2d5a3d 100%);
+            color: white;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .testimonials-container {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border-radius: var(--radius);
+            padding: 50px;
+            box-shadow: var(--shadow);
+            margin-bottom: 40px;
+            position: relative;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .testimonial-card::before {
+            content: """;
+            position: absolute;
+            top: 30px;
+            left: 40px;
+            font-size: 100px;
+            color: var(--secondary);
+            font-family: Georgia, serif;
+            opacity: 0.3;
+        }
+
+        .testimonial-text {
+            font-size: 20px;
+            line-height: 1.7;
+            margin-bottom: 30px;
+            color: rgba(255, 255, 255, 0.9);
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .author-avatar {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--secondary);
+        }
+
+        .author-info h4 {
+            margin-bottom: 8px;
+            color: white;
+        }
+
+        .author-info p {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 16px;
+        }
+
+        /* Секция контактов */
+        .contact-section {
+            background: white;
+            position: relative;
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 80px;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 36px;
+            margin-bottom: 25px;
+            color: var(--primary);
+        }
+
+        .contact-info p {
+            margin-bottom: 40px;
+            color: var(--gray);
+            font-size: 18px;
+            line-height: 1.7;
+        }
+
+        .contact-details {
+            margin-bottom: 50px;
+        }
+
+        .contact-detail {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+            padding: 20px;
+            background: var(--light);
+            border-radius: var(--radius);
+            transition: var(--transition);
+        }
+
+        .contact-detail:hover {
+            transform: translateX(10px);
+            box-shadow: var(--shadow);
+        }
+
+        .contact-detail i {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 20px;
+        }
+
+        .contact-form {
+            flex: 1;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+            padding: 50px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        .form-group {
+            margin-bottom: 25px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 500;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid #ddd;
+            border-radius: var(--radius);
+            font-family: 'Inter', sans-serif;
+            transition: var(--transition);
+            font-size: 16px;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(26, 71, 42, 0.1);
+        }
+
+        textarea.form-control {
+            min-height: 180px;
+            resize: vertical;
+        }
+
+        /* Футер */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 100px 0 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 60px;
+            margin-bottom: 60px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .footer-column h3 {
+            font-size: 24px;
+            margin-bottom: 30px;
+            color: var(--secondary);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 18px;
+        }
+
+        .footer-links a {
+            color: #bbb;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+            transform: translateX(5px);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 15px;
+            margin-top: 30px;
+        }
+
+        .social-icon {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: var(--transition);
+        }
+
+        .social-icon:hover {
+            background: var(--secondary);
+            transform: translateY(-5px);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 40px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #bbb;
+            font-size: 16px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Анимации появления при скролле */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.8s, transform 0.8s;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Параллакс эффект */
+        .parallax {
+            background-attachment: fixed;
+        }
+
+        /* Адаптивность */
+        @media (max-width: 1200px) {
+            .hero-content h1 {
+                font-size: 60px;
+            }
+            
+            .about-content {
+                gap: 60px;
+            }
+        }
+        
+        @media (max-width: 992px) {
+            .hero-content h1 {
+                font-size: 48px;
+            }
+            
+            .about-content {
+                flex-direction: column;
+            }
+            
+            .contact-content {
+                flex-direction: column;
+            }
+            
+            .navbar-menu {
+                display: none;
+            }
+            
+            .navbar-toggle {
+                display: block;
+            }
+            
+            .navbar-menu.active {
+                display: flex;
+                flex-direction: column;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: white;
+                padding: 30px;
+                box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+                gap: 20px;
+            }
+
+            .section-header h2 {
+                font-size: 42px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 38px;
+            }
+            
+            .section-header h2 {
+                font-size: 36px;
+            }
+            
+            .tours-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            section {
+                padding: 80px 0;
+            }
+            
+            .about-features {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-btns {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-content h1 {
+                font-size: 32px;
+            }
+            
+            .hero-content p {
+                font-size: 18px;
+            }
+            
+            .testimonial-card {
+                padding: 30px;
+            }
+            
+            .contact-form {
+                padding: 30px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Навигация -->
+    <nav class="navbar">
+        <div class="container">
+            <a href="#" class="navbar-brand">Мага<span>рам</span></a>
+            <button class="navbar-toggle">
+                <i class="fas fa-bars"></i>
+            </button>
+            <ul class="navbar-menu">
+                <li><a href="#home">Главная</a></li>
+                <li><a href="#about">О гиде</a></li>
+                <li><a href="#tours">Туры</a></li>
+                <li><a href="#gallery">Галерея</a></li>
+                <li><a href="#testimonials">Отзывы</a></li>
+                <li><a href="#contact">Контакты</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Герой секция -->
+    <section id="home" class="hero-section">
+        <video autoplay muted loop class="hero-bg-video">
+            <source src="https://assets.mixkit.co/videos/preview/mixkit-aerial-view-of-a-mountain-range-against-a-cloudy-sky-42759-large.mp4" type="video/mp4">
+        </video>
+        <div class="container">
+            <div class="hero-content">
+                <h1>Премиум путешествия по Дагестану</h1>
+                <p>Откройте для себя удивительную культуру, величественные горы и гостеприимство самого колоритного региона Кавказа с профессиональным гидом</p>
+                <div class="hero-btns">
+                    <a href="#tours" class="btn">
+                        <i class="fas fa-map-marked-alt"></i>
+                        Выбрать тур
+                    </a>
+                    <a href="#contact" class="btn btn-secondary">
+                        <i class="fas fa-headset"></i>
+                        Консультация
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- О гиде -->
+    <section id="about" class="about-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Ваш гид по Дагестану</h2>
+                <p>Познакомьтесь с человеком, который откроет для вас все секреты этого удивительного региона</p>
+            </div>
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <img src="https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=2861&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Магарам - гид по Дагестану">
+                </div>
+                <div class="about-text fade-in">
+                    <h2>Магарам Алиев</h2>
+                    <p>Родился и вырос в Дагестане, с детства влюблен в природу и культуру своего края. Более 10 лет работаю гидом, помогая туристам открыть для себя настоящий Дагестан.</p>
+                    <p>Я не просто показываю достопримечательности - я делюсь историями, традициями и духом моего народа. Мои туры - это погружение в аутентичную культуру, знакомство с местными жителями и незабываемые впечатления.</p>
+                    <div class="about-features">
+                        <div class="feature">
+                            <i class="fas fa-award"></i>
+                            <div>
+                                <h4>Лицензированный гид</h4>
+                                <p>Сертифицированный специалист</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <h4>10+ лет опыта</h4>
+                                <p>Работаю с 2013 года</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-language"></i>
+                            <div>
+                                <h4>Знание 4 языков</h4>
+                                <p>Русский, английский, аварский, даргинский</p>
+                            </div>
+                        </div>
+                        <div class="feature">
+                            <i class="fas fa-user-check"></i>
+                            <div>
+                                <h4>Индивидуальный подход</h4>
+                                <p>Туры по вашим предпочтениям</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn" style="margin-top: 30px;">
+                        <i class="fas fa-paper-plane"></i>
+                        Написать мне
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Туры -->
+    <section id="tours" class="tours-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Эксклюзивные туры</h2>
+                <p>Тщательно разработанные маршруты, которые раскрывают всю красоту и разнообразие Дагестана</p>
+            </div>
+            <div class="tours-grid">
+                <div class="tour-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1597134356835-61e8c5c13e7c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Горный Дагестан" class="tour-image">
+                    <div class="tour-content">
+                        <h3>Горное сердце Дагестана</h3>
+                        <p>5-дневное путешествие по самым живописным горным селениям с посещением древних крепостей и водопадов. Ночевки в аутентичных гостевых домах.</p>
+                        <div class="tour-features">
+                            <div class="tour-feature">
+                                <i class="far fa-clock"></i>
+                                <span>5 дней</span>
+                            </div>
+                            <div class="tour-feature">
+                                <i class="fas fa-user-friends"></i>
+                                <span>до 8 человек</span>
+                            </div>
+                            <div class="tour-feature">
+                                <i class="fas fa-hiking"></i>
+                                <span>средняя сложность</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">
+                            <div class="price">32 500 ₽</div>
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Культурный тур" class="tour-image">
+                    <div class="tour-content">
+                        <h3>Культурное наследие</h3>
+                        <p>Знакомство с традициями, ремеслами и кухней Дагестана. Включает мастер-классы и дегустации. Идеально для первого знакомства с регионом.</p>
+                        <div class="tour-features">
+                            <div class="tour-feature">
+                                <i class="far fa-clock"></i>
+                                <span>3 дня</span>
+                            </div>
+                            <div class="tour-feature">
+                                <i class="fas fa-user-friends"></i>
+                                <span>до 12 человек</span>
+                            </div>
+                            <div class="tour-feature">
+                                <i class="fas fa-utensils"></i>
+                                <span>гастрономический</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">
+                            <div class="price">21 900 ₽</div>
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="tour-card fade-in">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Природа Дагестана" class="tour-image">
+                    <div class="tour-content">
+                        <h3>Природные сокровища</h3>
+                        <p>Путешествие к самым красивым местам Дагестана: каньоны, водопады, озера и горные плато. Рай для фотографов и любителей природы.</p>
+                        <div class="tour-features">
+                            <div class="tour-feature">
+                                <i class="far fa-clock"></i>
+                                <span>4 дня</span>
+                            </div>
+                            <div class="tour-feature">
+                                <i class="fas fa-user-friends"></i>
+                                <span>до 6 человек</span>
+                            </div>
+                            <div class="tour-feature">
+                                <i class="fas fa-mountain"></i>
+                                <span>для фотографов</span>
+                            </div>
+                        </div>
+                        <div class="tour-price">
+                            <div class="price">26 700 ₽</div>
+                            <a href="#contact" class="btn">Забронировать</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Галерея -->
+    <section id="gallery" class="gallery-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Галерея Дагестана</h2>
+                <p>Уникальные моменты и захватывающие виды горного края</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1597134356835-61e8c5c13e7c?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Горы Дагестана">
+                    <div class="gallery-overlay">
+                        <h3>Горные пейзажи</h3>
+                        <p>Величественные Кавказские горы</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Селения Дагестана">
+                    <div class="gallery-overlay">
+                        <h3>Древние аулы</h3>
+                        <p>Аутентичные горные селения</p>
+                    </div>
+                </div>
+                <div class="gallery-item fade-in">
+                    <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=2940&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Природа Дагестана">
+                    <div class="gallery-overlay">
+                        <h3>Природные красоты</h3>
+                        <p>Уникальные ландшафты региона</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Отзывы -->
+    <section id="testimonials" class="testimonials-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Отзывы путешественников</h2>
+                <p>Что говорят наши гости о путешествиях по Дагестану</p>
+            </div>
+            <div class="testimonials-container">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        Это было самое невероятное путешествие в моей жизни! Магарам - не просто гид, а настоящий знаток и патриот своего края. Он показал нам не только красивые места, но и познакомил с местными жителями, их традициями и культурой. Организация была безупречной - от трансфера до питания. Спасибо за незабываемые впечатления!
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/women/44.jpg" alt="Анна" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Анна Смирнова</h4>
+                            <p>Тур "Горное сердце Дагестана", август 2023</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-text">
+                        Я много путешествовал по России, но Дагестан открылся для меня с совершенно новой стороны благодаря Магараму. Его глубокие знания истории, культуры и природы региона сделали поездку по-настоящему насыщенной и интересной. Отдельное спасибо за организацию - все было продумано до мелочей! Обязательно вернусь снова, чтобы увидеть другие уголки этого удивительного края.
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="https://randomuser.me/api/portraits/men/32.jpg" alt="Дмитрий" class="author-avatar">
+                        <div class="author-info">
+                            <h4>Дмитрий Волков</h4>
+                            <p>Тур "Культурное наследие", июнь 2023</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Контакты -->
+    <section id="contact" class="contact-section">
+        <div class="container">
+            <div class="section-header">
+                <h2>Свяжитесь со мной</h2>
+                <p>Готов ответить на все ваши вопросы и помочь с организацией путешествия</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info fade-in">
+                    <h3>Давайте обсудим ваше путешествие</h3>
+                    <p>Я с радостью помогу вам организовать незабываемую поездку в Дагестан. Свяжитесь со мной любым удобным способом для бесплатной консультации.</p>
+                    <div class="contact-details">
+                        <div class="contact-detail">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h4>Телефон</h4>
+                                <p>+7 (928) 123-45-67</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h4>Email</h4>
+                                <p>magaram@dagestan-tours.ru</p>
+                            </div>
+                        </div>
+                        <div class="contact-detail">
+                            <i class="fas fa-map-marker-alt"></i>
+                            <div>
+                                <h4>Адрес</h4>
+                                <p>Махачкала, ул. Горького, 15</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+                <div class="contact-form fade-in">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Ваше имя</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон</label>
+                            <input type="tel" id="phone" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Сообщение</label>
+                            <textarea id="message" class="form-control" placeholder="Расскажите о ваших планах и пожеланиях..." required></textarea>
+                        </div>
+                        <button type="submit" class="btn" style="width: 100%;">
+                            <i class="fas fa-paper-plane"></i>
+                            Отправить сообщение
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Футер -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3>Магарам</h3>
+                    <p>Профессиональный гид по Дагестану с 10-летним опытом. Организую незабываемые путешествия по самому колоритному региону Кавказа.</p>
+                    <div class="footer-social">
+                        <a href="#" class="social-icon"><i class="fab fa-whatsapp"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-telegram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-instagram"></i></a>
+                        <a href="#" class="social-icon"><i class="fab fa-vk"></i></a>
+                    </div>
+                </div>
+                <div class="footer-column">
+                    <h3>Туры</h3>
+                    <ul class="footer-links">
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Горное сердце Дагестана</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Культурное наследие</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Природные сокровища</a></li>
+                        <li><a href="#"><i class="fas fa-chevron-right"></i> Индивидуальные маршруты</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3>Контакты</h3>
+                    <ul class="footer-links">
+                        <li><a href="tel:+79281234567"><i class="fas fa-phone"></i> +7 (928) 123-45-67</a></li>
+                        <li><a href="mailto:magaram@dagestan-tours.ru"><i class="fas fa-envelope"></i> magaram@dagestan-tours.ru</a></li>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Махачкала, ул. Горького, 15</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2023 Магарам - Премиум гид по Дагестану. Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Анимация появления элементов при скролле
+        const fadeElements = document.querySelectorAll('.fade-in');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+        
+        fadeElements.forEach(el => observer.observe(el));
+        
+        // Фиксированная навигация при скролле
+        window.addEventListener('scroll', () => {
+            const navbar = document.querySelector('.navbar');
+            if (window.scrollY > 100) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // Мобильное меню
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarMenu = document.querySelector('.navbar-menu');
+        
+        navbarToggle.addEventListener('click', () => {
+            navbarMenu.classList.toggle('active');
+        });
+
+        // Закрытие меню при клике на ссылку
+        document.querySelectorAll('.navbar-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                navbarMenu.classList.remove('active');
+            });
+        });
+
+        // Обработка формы
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Параллакс эффект для некоторых секций
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const parallaxElements = document.querySelectorAll('.parallax');
+            
+            parallaxElements.forEach(el => {
+                const speed = 0.5;
+                el.style.transform = `translateY(${scrolled * speed}px)`;
+            });
+        });
+    </script>
+
+</body>
+</html>
